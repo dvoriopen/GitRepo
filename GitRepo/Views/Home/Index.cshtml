@@ -1,0 +1,94 @@
+﻿<head>
+
+    <title>GitHub Repository</title>
+
+
+</head>
+
+
+
+<div ng-show="!showBookmarkView">
+
+    <div class="row" style="padding-top:10px; padding-bottom:10px">
+
+        <input type="text" class="form-control" style="float:left"
+                placeholder="search" ng-model="searchInput" ng-enter="gitHub_searchRepo(searchInput)"/>
+
+        <button class="btn btn-md btn-primary" ng-click="gitHub_searchRepo(searchInput)">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+
+    </div>
+
+    <div class="row" >{{repo_message}}</div>
+    <div class="row" ng-if-start="repo_items!=null&&repo_items.length>0"> {{repo_items.length}} results</div>
+
+    <div class="row" ng-if-end>
+
+        <div ng-repeat="item in repo_items" class="col-md-2" style="margin:1%">
+
+            <div class="row">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading panelHeading" title="{{item.name}}"> {{item.name}}</div>
+
+                    <div class="panel-body in" id="git-repo-panel">
+
+                        <div class="row">
+                          <img alt="Avatar" class="avatar" ng-src="{{item.avatarURL}}"/>
+                        </div>
+
+                        <div class="row" style="justify-content: center;display: flex;align-items: center;">
+
+                            <button class="btn btn-md btn-primary glyphicon glyphicon-bookmark" title="add to bookmarks" ng-click="gitHub_setBookmark(item)"></button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div ng-show="showBookmarkView" style="padding-top:10px; padding-bottom:10px">
+
+    <div class="row">{{repo_bookmarMessage}}</div>
+    <div class="row" ng-if="repo_bookmarkItems!=null&&repo_bookmarkItems.length>0"> {{repo_bookmarkItems.length}} results</div>
+    <div class="row">
+
+        <div ng-repeat="item in repo_bookmarkItems" class="col-md-2" style="margin:1%">
+
+            <div class="row">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading"> {{item.Name}}</div>
+
+                    <div class="panel-body in" id="git-repo-panel">
+
+                        <div class="row">
+                            <img alt="Avatar" class="avatar" ng-src="{{item.AvatarURL}}" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+

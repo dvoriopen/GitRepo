@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script src="~/scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-dialog.min.js"></script>
+    <script src="~/Scripts/angular.js"></script>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GitHubRepository</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="~/Scripts/gitRepoGlobal.js"></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+
+        var userIdentity = '@System.Security.Principal.WindowsIdentity.GetCurrent().Name';
+
+        var baseURL = '@Url.Content("~")';
+
+        var WinUser = '@User.Identity.Name';
+
+    </script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                <span class="navbarTitle">GitHub Repositories {{showBookmarkView?"bookmarks":"search"}}</span>
+                <a class="navbar-brand navbarlink" ng-show="!showBookmarkView" ng-click="gitHub_showBookmarks()">Bookmarks</a>
+                <a class="navbar-brand navbarlink" ng-show="showBookmarkView" ng-click="showBookmarkView=false;">search</a>
+
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav"></ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="container body-content">       
+
+        @RenderBody()
+
+        <div id="loader-page" class="modal-backdrop in" style="z-index:2500;display:none"></div>
+
+        <div id="loader" class="loading" style="z-index:2500;display:none">
+            <img alt="loading" src="http://www.nasa.gov/multimedia/videogallery/ajax-loader.gif" />
+        </div>
+
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+
